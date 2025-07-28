@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Example</title>
+</head>
+<body>
+    <div>
+        <p>1. Kiểm tra text với nháp vào số hay chuỗi, thông báo lên trang web</p>
+        <input type="text" id="dayInput1" placeholder="Nhập ký tự">
+        <button onclick="checkDays1()">Kiểm tra</button>
+        <span id="result1"></span>
+    </div>
+
+    <div>
+        <p>2. Kiểm tra định dạng nhập vào (DD-MM-YYYY)</p>
+        <input type="text" id="dateInput2" placeholder="Nhập ngày (DD-MM-YYYY)">
+        <button onclick="checkDate2()">Kiểm tra</button>
+        <span id="result2"></span>
+    </div>
+
+    <div>
+        <p>3. Kiểm tra định dạng nháp vào (DD/MM/YYYY)</p>
+        <input type="text" id="dateInput3" placeholder="Nhập ngày (DD/MM/YYYY)">
+        <button onclick="checkDate3()">Kiểm tra</button>
+        <span id="result3"></span>
+    </div>
+
+    <div>
+        <p>4. Kết hợp 2 định dạng trên vào 1 để người dùng có thể nhập ((DD-MM-YYYY) hoặc (DD/MM/YYYY))</p>
+        <input type="text" id="dateInput4" placeholder="Nhập ngày (DD-MM-YYYY hoặc DD/MM/YYYY)">
+        <button onclick="checkDate4()">Kiểm tra</button>
+        <span id="result4"></span>
+    </div>
+
+    <div>
+        <p>5. Kiểm tra nhập vào họ và tên (ít nhất 2 từ)</p>
+        <input type="text" id="nameInput5" placeholder="Nhập tên">
+        <button onclick="checkName5()">Kiểm tra</button>
+        <span id="result5"></span>
+    </div>
+
+    <div>
+        <p>6. Kiểm tra Mã Bệnh Nhân BN-20230701-091</p>
+        <input type="text" id="msInput6" placeholder="Nhập MS Bến Nhà">
+        <button onclick="checkMS6()">Kiểm tra</button>
+        <span id="result6"></span>
+    </div>
+
+    <div>
+        <p>7. Kiểm tra số diện thoại Việt Nam hợp lệ (bắt đầu bằng 0, 10 chữ số)</p>
+        <input type="text" id="phoneInput7" placeholder="Nhập số điện thoại">
+        <button onclick="checkPhone7()">Kiểm tra</button>
+        <span id="result7"></span>
+    </div>
+
+    <div>
+        <p>8. Kiểm tra căn căn cước công dân (từ 9 hoặc 12 số)</p>
+        <input type="text" id="codeInput8" placeholder="Nhập mã (9-12 số)">
+        <button onclick="checkCode8()">Kiểm tra</button>
+        <span id="result8"></span>
+    </div>
+
+    <div>
+        <p>9. Kiểm tra mật khẩu mạnh (ít nhất 8 ký tự, có chữ hoa, thường và số)</p>
+        <input type="text" id="passwordInput9" placeholder="Nhập mật khẩu">
+        <button onclick="checkPassword9()">Kiểm tra</button>
+        <span id="result9"></span>
+    </div>
+
+    <div>
+        <p>10. Kiểm tra email hợp lệ</p>
+        <input id="inputemail" type="text" placeholder="Nhập email">
+        <button onclick="validateEmail10()">Kiểm tra</button>
+        <span id="spemail"></span>
+    </div>
+
+    <script>
+        function checkDays1() {
+            const days = document.getElementById("dayInput1").value;
+            const result = document.getElementById("result1");
+            if (/^\d+$/.test(days)) {
+                result.innerText = "Ký tự là số";
+                result.style.color="green";
+            } else if (/^[a-zA-Z]+$/.test(days)) {
+                result.innerText = "Ký tự là chữ";
+                result.style.color="green";
+            } else {
+                result.innerText = "Không hợp lệ!";
+                result.style.color="red";
+            }
+        }
+
+        function checkDate2() {
+            const date = document.getElementById("dateInput2").value;
+            const result = document.getElementById("result2");
+            const pattern = /^(\d{2})-(\d{2})-(\d{4})$/;
+            if (pattern.test(date)) {
+                result.innerText = "Hợp lệ!";
+                result.style.color="green";
+            } else {
+                result.innerText = "Không hợp lệ!";
+                result.style.color="red";
+            }
+        }
+
+        function checkDate3() {
+            const date = document.getElementById("dateInput3").value;
+            const result = document.getElementById("result3");
+            const pattern = /^(\d{2})\/(\d{2})\/(\d{4})$/;
+            if (pattern.test(date)) {
+                result.innerText = "Hợp lệ!";
+                result.style.color="green";
+            } else {
+                result.innerText = "Không hợp lệ!";
+                result.style.color="red";
+            }
+        }
+
+        function checkDate4() {
+            const date = document.getElementById("dateInput4").value;
+            const result = document.getElementById("result4");
+            const pattern1 = /^(\d{2})-(\d{2})-(\d{4})$/;
+            const pattern2 = /^(\d{2})\/(\d{2})\/(\d{4})$/;
+            if (pattern1.test(date) || pattern2.test(date)) {
+                result.innerText = "Hợp lệ!";
+                result.style.color="green";
+            } else {
+                result.innerText = "Không hợp lệ!";
+                result.style.color="red";
+            }
+        }
+
+        function checkName5() {
+            const name = document.getElementById("nameInput5").value;
+            const result = document.getElementById("result5");
+            const words = name.trim().split(/\s+/);
+            if (words.length >= 2) {
+                result.innerText = "Hợp lệ!";
+                result.style.color="green";
+            } else {
+                result.innerText = "Không hợp lệ!";
+                result.style.color="red";
+            }
+        }
+
+        function checkMS6() {
+            const ms = document.getElementById("msInput6").value;
+            const result = document.getElementById("result6");
+            const pattern = /^BN-\d{8}-\d{3}$/;
+            if (pattern.test(ms)) {
+                result.innerText = "Hợp lệ!";
+                result.style.color="green";
+            } else {
+                result.innerText = "Không hợp lệ!";
+                result.style.color="red";
+            }
+        }
+
+        function checkPhone7() {
+            const phone = document.getElementById("phoneInput7").value;
+            const result = document.getElementById("result7");
+            const pattern = /^0\d{9}$/;
+            if (pattern.test(phone)) {
+                result.innerText = "Hợp lệ!";
+                result.style.color="green";
+            } else {
+                result.innerText = "Không hợp lệ!";
+                result.style.color="red";
+            }
+        }
+
+        function checkCode8() {
+            const code = document.getElementById("codeInput8").value;
+            const result = document.getElementById("result8");
+            if (/^\d{9,12}$/.test(code)) {
+                result.innerText = "Hợp lệ!";
+                result.style.color="green";
+            } else {
+                result.innerText = "Không hợp lệ!";
+                result.style.color="red";
+            }
+        }
+
+        function checkPassword9() {
+            const password = document.getElementById("passwordInput9").value;
+            const result = document.getElementById("result9");
+            const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+            if (pattern.test(password)) {
+                result.innerText = "Hợp lệ!";
+                result.style.color="green";
+            } else {
+                result.innerText = "Không hợp lệ!";
+                result.style.color="red";
+            }
+        }
+
+        function validateEmail10() {
+            let val = document.getElementById('inputemail').value;
+            let regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
+            let span = document.getElementById('spemail');
+            if (regex.test(val)) {
+                span.innerText = 'Hợp lệ';
+                span.style.color="green";
+            } else {
+                span.innerText = 'Sai định dạng email';
+                span.style.color="red";
+            }
+        }
+
+
+    </script>
+</body>
+</html>
+
+
